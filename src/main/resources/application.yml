@@ -1,0 +1,11 @@
+server:
+  port: 8055
+
+spring:
+  profiles:
+    active: ${ACTIVE_PROFILE:dev}
+  devtools:
+    livereload:
+      enabled: false
+    add-properties: false
+

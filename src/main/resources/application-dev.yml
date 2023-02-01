@@ -1,0 +1,7 @@
+spring:
+  kafka:
+    bootstrap-servers:
+    consumer:
+      auto-offset-reset: earliest
+    listener:
+      type: single

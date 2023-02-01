@@ -1,0 +1,7 @@
+spring:
+  kafka:
+    bootstrap-servers: 172.16.229.128:9898
+    consumer:
+      auto-offset-reset: earliest
+    listener:
+      type: single
