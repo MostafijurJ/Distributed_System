@@ -4,8 +4,21 @@ server:
 spring:
   profiles:
     active: ${ACTIVE_PROFILE:dev}
+  application:
+    name: Distributed System Application
   devtools:
     livereload:
       enabled: false
     add-properties: false
 
+
+kafka:
+  consumer:
+    groups:
+      primary: primary
+      secondary: secondary
+  partition-size: 1
+  replication-factor: 1
+  events:
+    name:
+      processing-start-event: Processing_Start

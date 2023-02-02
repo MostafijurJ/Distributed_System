@@ -1,6 +1,6 @@
 spring:
   kafka:
-    bootstrap-servers:
+    bootstrap-servers: http://localhost:9092
     consumer:
       auto-offset-reset: earliest
     listener:
