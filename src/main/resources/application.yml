@@ -19,6 +19,3 @@ kafka:
       secondary: secondary
   partition-size: 1
   replication-factor: 1
-  events:
-    name:
-      processing-start-event: Processing_Start
