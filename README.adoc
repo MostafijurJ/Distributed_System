@@ -1,0 +1,8 @@
+= Distributed_System
+
+Distributed system design with apache kafka and actor model 
+****
+
+Architectural Diagram of the distributed system is shown below
+
+image:doc/Distributed_system.png[Distributed_system.png]
