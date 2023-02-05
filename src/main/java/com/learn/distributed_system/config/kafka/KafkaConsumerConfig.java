@@ -30,6 +30,9 @@ public class KafkaConsumerConfig {
     @Value("${kafka.consumer.groups.secondary}")
     private String consumerGroupIdSecondary;
 
+    @Value("${kafka.polling-size}")
+    private String kafkaPollingSizeSecondary;
+
 
     @Bean
     public ConsumerFactory<String, Object> consumerFactory(){
@@ -59,7 +62,7 @@ public class KafkaConsumerConfig {
      * Multple consumer configuration implementation for huge amounts of event polling
      **/
     @Bean
-    public ConsumerFactory<String, String> gatewayConsumerFactory(){
+    public ConsumerFactory<String, String> secondaryConsumerFactory(){
 
         Map<String, Object> properties = new HashMap<>();
 
@@ -69,16 +72,20 @@ public class KafkaConsumerConfig {
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class.getName());
         properties.put(ConsumerConfig.FETCH_MAX_BYTES_CONFIG, "524288000");
         properties.put(ConsumerConfig.FETCH_MAX_WAIT_MS_CONFIG, "3000");
+        properties.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, kafkaPollingSizeSecondary);
+        properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
+        properties.put(ConsumerConfig.RECEIVE_BUFFER_CONFIG,33554432); //default value
 
         return new DefaultKafkaConsumerFactory<>(properties);
     }
+
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, String> gatewayKafkaListenerContainerFactory(){
 
         ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(gatewayConsumerFactory());
-        factory.setConsumerFactory(consumerFactory());
+        factory.setConsumerFactory(secondaryConsumerFactory());
+        factory.setBatchListener(true);
         return factory;
     }
 }

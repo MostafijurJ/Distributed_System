@@ -17,5 +17,6 @@ kafka:
     groups:
       primary: primary
       secondary: secondary
+  polling-size: 5
   partition-size: 1
   replication-factor: 1
