@@ -6,6 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum KafkaTopic {
-    PROCESSING_START("processing-Start");
+    PROCESSING_START("processing-Start"), WORKER_TOPIC("worker-topic");
     private String topicName;
 }

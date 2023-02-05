@@ -8,13 +8,16 @@ import akka.actor.typed.javadsl.Behaviors;
 import akka.actor.typed.javadsl.Receive;
 import com.learn.distributed_system.actor.commands.Command;
 import com.learn.distributed_system.actor.commands.WorkerActorCommand;
+import com.learn.distributed_system.service.WorkerService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class WorkerActor extends AbstractBehavior<Command> {
 
+    private WorkerService workerService;
     private WorkerActor(ActorContext<Command> context) {
         super(context);
+         this.workerService = new WorkerService();
     }
 
     public static Behavior<Command> create() {
@@ -32,6 +35,7 @@ public class WorkerActor extends AbstractBehavior<Command> {
 
     private Behavior<Command> startWork(WorkerActorCommand command){
         log.info("WorkerActor started with task named with " + command.getTaskName());
+        workerService.eventPublisher(command.getTaskName());
         return Behaviors.stopped();
     }
 
