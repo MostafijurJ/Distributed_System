@@ -1,4 +1,4 @@
-package com.learn.distributed_system.actor.distributation;
+package com.learn.distributed_system.actor.parallal_task;
 
 import akka.actor.typed.Behavior;
 import akka.actor.typed.PostStop;
@@ -14,10 +14,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class WorkerActor extends AbstractBehavior<Command> {
 
-    private WorkerService workerService;
+    private final WorkerService workerService;
     private WorkerActor(ActorContext<Command> context) {
         super(context);
-         this.workerService = new WorkerService();
+        this.workerService = new WorkerService();
     }
 
     public static Behavior<Command> create() {
@@ -34,8 +34,8 @@ public class WorkerActor extends AbstractBehavior<Command> {
     }
 
     private Behavior<Command> startWork(WorkerActorCommand command){
-        log.info("WorkerActor started with task named with " + command.getTaskName());
-        workerService.eventPublisher(command.getTaskName());
+        log.info("Worker Actor started with task named with " + command.getTaskName());
+        workerService.startWorking(command.getTaskName());
         return Behaviors.stopped();
     }
 

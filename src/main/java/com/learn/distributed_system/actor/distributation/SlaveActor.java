@@ -35,7 +35,7 @@ public class SlaveActor extends AbstractBehavior<Command> {
         try{
             for(String singleTask: command.getTaskList()){
 
-                ActorRef<Command> validationProcess = getContext().spawn(WorkerActor.create(), "worker-" + UUID.randomUUID());
+                ActorRef<Command> validationProcess = getContext().spawn(DistributorActor.create(), "worker-" + UUID.randomUUID());
                 validationProcess.tell(new WorkerActorCommand(singleTask));
             }
 

@@ -17,4 +17,9 @@ public class WorkerService extends BaseService{
         commonProducer.sendMessage(KafkaTopic.WORKER_TOPIC, eventWrapper);
     }
 
+    public void startWorking(String taskName){
+        logger.trace("worker started from here with task name "+taskName);
+    }
+
+
 }
