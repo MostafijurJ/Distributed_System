@@ -18,7 +18,15 @@ public class KafkaTopicConfig {
 
     @Bean
     public NewTopic startTopic(){
-        return TopicBuilder.name(KafkaTopic.PROCESSING_START.getTopicName())
+        return TopicBuilder.name(KafkaTopic.PROCESSING_START)
+                .partitions(topicPartitionSize)
+                .replicas(topicReplicationSize)
+                .build();
+    }
+
+    @Bean
+    public NewTopic workerTopic(){
+        return TopicBuilder.name(KafkaTopic.WORKER_TOPIC)
                 .partitions(topicPartitionSize)
                 .replicas(topicReplicationSize)
                 .build();

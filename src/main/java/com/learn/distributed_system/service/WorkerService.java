@@ -14,7 +14,7 @@ public class WorkerService extends BaseService{
 
     public void eventPublisher(String event){
         EventWrapper<Object> eventWrapper = prepareKafkaEvent(event, getCurrentTimestamp(), generateRequestId());
-        commonProducer.sendMessage(KafkaTopic.WORKER_TOPIC.getTopicName(), eventWrapper);
+        commonProducer.sendMessage(KafkaTopic.WORKER_TOPIC, eventWrapper);
     }
 
 }

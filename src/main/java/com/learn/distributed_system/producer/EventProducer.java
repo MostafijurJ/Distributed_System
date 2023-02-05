@@ -11,7 +11,7 @@ public class EventProducer extends BaseService {
     private final CommonProducer commonProducer;
     public void publishHelloWorldEvent(HelloWorld   event) {
         EventWrapper<Object> objectEventWrapper = prepareKafkaEvent(generateRequestId(), getCurrentTimestamp(), event);
-        commonProducer.sendMessage(KafkaTopic.PROCESSING_START.getTopicName(), objectEventWrapper);
+        commonProducer.sendMessage(KafkaTopic.PROCESSING_START, objectEventWrapper);
         logger.trace("Kafka topic started successfully published");
     }
 

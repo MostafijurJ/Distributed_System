@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learn.distributed_system.domain.HelloWorld;
 import com.learn.distributed_system.service.BaseService;
 import com.learn.distributed_system.util.EventWrapper;
+import com.learn.distributed_system.util.KafkaTopic;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -16,7 +17,7 @@ public class EventConsumer extends BaseService {
     private final ObjectMapper objectMapper;
 
 
-    @KafkaListener(topics = "${kafka.events.name.processing-start-event}", groupId = "${kafka.consumer.groups.primary}")
+    @KafkaListener(topics = KafkaTopic.PROCESSING_START, groupId = "${kafka.consumer.groups.primary}")
     public void consumeEvent(@Payload String event) {
         try {
             EventWrapper<HelloWorld> eventWrapper = objectMapper.readValue(event, new TypeReference<>() {
