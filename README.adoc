@@ -1,8 +1,17 @@
 = Distributed_System
 
-Distributed system design with apache kafka and actor model 
-****
+Distributed system design with apache kafka and actor model
 
 Architectural Diagram of the distributed system is shown below
 
 image:doc/Distributed_system.png[Distributed_system.png]
+
+
+**Monitoring Kafka
+**
+
+Here I am using KafDrop for monitoring the kafka topics, clusters and the partitions.
+
+Kafdrop is a web-based UI for monitoring Apache Kafka clusters. It provides real-time monitoring and management capabilities for Kafka topics, brokers, partitions, and consumer groups. Kafdrop is an open-source project that can be easily deployed and used to monitor and manage Kafka clusters.
+
+image:doc/kafka_topics.png[kafka_topics.png]
