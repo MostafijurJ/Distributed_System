@@ -7,18 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class WorkerService extends BaseService{
+public class WorkerService extends BaseService {
 
     @Autowired
     private CommonProducer commonProducer;
 
-    public void eventPublisher(String event){
+    public void eventPublisher(String event) {
         EventWrapper<Object> eventWrapper = prepareKafkaEvent(event, getCurrentTimestamp(), generateRequestId());
         commonProducer.sendMessage(KafkaTopic.WORKER_TOPIC, eventWrapper);
     }
 
-    public void startWorking(String taskName){
-        logger.trace("worker started from here with task name "+taskName);
+    public void startWorking(String taskName) {
+        logger.trace("worker started from here with task name " + taskName);
     }
 
 

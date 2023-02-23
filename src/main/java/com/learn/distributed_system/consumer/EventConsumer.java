@@ -9,9 +9,9 @@ import com.learn.distributed_system.util.KafkaTopic;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class EventConsumer extends BaseService {
     private final ObjectMapper objectMapper;

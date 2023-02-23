@@ -5,8 +5,10 @@ import com.learn.distributed_system.service.BaseService;
 import com.learn.distributed_system.util.EventWrapper;
 import com.learn.distributed_system.util.KafkaTopic;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
+@Component
 public class EventProducer extends BaseService {
     private final CommonProducer commonProducer;
     public void publishHelloWorldEvent(HelloWorld   event) {
